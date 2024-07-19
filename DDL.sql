@@ -5,7 +5,7 @@ CREATE DATABASE farmacy;
 USE farmacy;
 
 CREATE TABLE cities (
-    id INT UNIQUE AUTO_INCREMENT,
+    id VARCHAR(3) UNIQUE,
     name VARCHAR(30),
     CONSTRAINT pk_cities PRIMARY KEY (id)
 );
@@ -13,7 +13,7 @@ CREATE TABLE cities (
 CREATE TABLE districts (
     id INT UNIQUE AUTO_INCREMENT,
     name VARCHAR(35),
-    city INT,
+    city VARCHAR(3),
     CONSTRAINT pk_districts_id PRIMARY KEY (id),
     CONSTRAINT fk_districts_cities_id FOREIGN KEY (id) REFERENCES cities(id) 
 );
