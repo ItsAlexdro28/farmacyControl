@@ -3,10 +3,10 @@ package com.farmacy;
 import javax.swing.SwingUtilities;
 
 import com.farmacy.city.aplication.CreateCityUC;
-import com.farmacy.city.aplication.DeleteCity;
-import com.farmacy.city.aplication.EditCity;
-import com.farmacy.city.aplication.FindAllCity;
-import com.farmacy.city.aplication.FindCity;
+import com.farmacy.city.aplication.DeleteCityUC;
+import com.farmacy.city.aplication.EditCityUC;
+import com.farmacy.city.aplication.FindAllCityUC;
+import com.farmacy.city.aplication.FindCityUC;
 import com.farmacy.city.domain.service.CityService;
 import com.farmacy.city.infrastructure.CityRepository;
 import com.farmacy.city.infrastructure.CityUI;
@@ -17,11 +17,11 @@ public class Main {
     public static void main(String[] args) {
         CityService cityService = new CityRepository();
         CreateCityUC createCity = new CreateCityUC(cityService);
-        DeleteCity deleteCity = new DeleteCity(cityService);
-        EditCity editCity = new EditCity(cityService);
-        FindCity findCity = new FindCity(cityService);
-        FindAllCity findAllCity = new FindAllCity(cityService);
-        CityUI cityUI = new CityUI(createCity, deleteCity, findCity);
+        DeleteCityUC deleteCity = new DeleteCityUC(cityService);
+        EditCityUC editCity = new EditCityUC(cityService);
+        FindCityUC findCity = new FindCityUC(cityService);
+        FindAllCityUC findAllCity = new FindAllCityUC(cityService);
+        CityUI cityUI = new CityUI(createCity, deleteCity, findCity, editCity, findAllCity);
 
 
         SwingUtilities.invokeLater(new Runnable() {

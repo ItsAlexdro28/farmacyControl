@@ -15,7 +15,7 @@ CREATE TABLE districts (
     name VARCHAR(35),
     city VARCHAR(3),
     CONSTRAINT pk_districts_id PRIMARY KEY (id),
-    CONSTRAINT fk_districts_cities_id FOREIGN KEY (id) REFERENCES cities(id) 
+    CONSTRAINT fk_districts_cities_id FOREIGN KEY (city) REFERENCES cities(id) 
 );
 
 CREATE TABLE type_id (
