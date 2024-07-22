@@ -10,4 +10,5 @@ public interface DistrictService {
     void editDistrict(String name, String field, String newValue);
     Optional<District> findDistrict(String name);
     List<District> findAllDistricts();
+    List<District> getAllDistricts();
 }

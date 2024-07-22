@@ -11,4 +11,5 @@ public interface TypeIdService {
     void editTypeId(String document, String field, String newValue);
     Optional<TypeId> findTypeId(String document);
     List<TypeId> findAllTypeIds();
+    List<TypeId> getAllTypeIds();
 }

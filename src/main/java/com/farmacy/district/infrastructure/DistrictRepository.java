@@ -99,4 +99,21 @@ public class DistrictRepository implements DistrictService {
         }
         return districts;
     }
+
+    @Override
+    public List<District> getAllDistricts() {
+        List<District> districts = new ArrayList<>();
+        try {
+            String query = "SELECT id, name, city FROM districts";
+            PreparedStatement ps = connection.prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                District district = new District(rs.getInt("id"), rs.getString("name"), rs.getString("city"));
+                districts.add(district);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return districts;
+    }
 }

@@ -98,4 +98,21 @@ public class TypeIdRepository implements TypeIdService {
         }
         return typeIds;
     }
+
+    @Override
+    public List<TypeId> getAllTypeIds() {
+        List<TypeId> typeIds = new ArrayList<>();
+        try {
+            String query = "SELECT id, document FROM type_id";
+            PreparedStatement ps = connection.prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                TypeId typeId = new TypeId(rs.getInt("id"), rs.getString("document"));
+                typeIds.add(typeId);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return typeIds;
+    }
 }

@@ -17,10 +17,11 @@ public class MenuUI extends JFrame {
     private TypeIdUI typeIdUI;
     private DistrictUI districtUI;
 
-    public MenuUI(CityUI cityUI, DistrictUI districtUI, TypeIdUI typeIdUI) {
+    public MenuUI(CityUI cityUI, DistrictUI districtUI, TypeIdUI typeIdUI, ClientUI clientUI) {
         this.cityUI = cityUI;
         this.districtUI = districtUI;
         this.typeIdUI = typeIdUI;
+        this.clientUI = clientUI;
         
         setTitle("Titulo");
         setSize(500, 300);
@@ -40,6 +41,12 @@ public class MenuUI extends JFrame {
             }
         });
         
+        button3.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            clientUI.run();
+            }
+        });
+        
         button2.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
             districtUI.run();
@@ -51,6 +58,8 @@ public class MenuUI extends JFrame {
             typeIdUI.run();
             }
         });
+
+
         buttonPanel.add(button1);
         buttonPanel.add(button2);
         buttonPanel.add(button3);
