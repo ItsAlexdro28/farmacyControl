@@ -31,6 +31,7 @@ public class DistrictUI {
         this.deleteDistrictUC = deleteDistrictUC;
         this.findDistrictUC = findDistrictUC;
         this.editDistrictUC = editDistrictUC;
+        this.findAllDistrictsUC = findAllDistrictsUC;
         this.getAllCitiesUC = getAllCitiesUC;
     }
 
@@ -76,37 +77,50 @@ public class DistrictUI {
                 }
                 break;
             case 3: 
-                String districtNameToEdit = JOptionPane.showInputDialog(null, "Nombre del Distrito a Editar");
+                String districtNameToEdit = JOptionPane.showInputDialog(null, "Nombre del Barrio a Editar");
             
                 Optional<District> foundEditDistrict = findDistrictUC.execute(districtNameToEdit);
-                if (foundDistrict.isPresent()) {
-                    District district = foundDistrict.get();
+                if (foundEditDistrict.isPresent()) {
+                    //District district = foundEditDistrict.get();
                     String[] fields = {"name", "city"};
-                    String fieldToEdit = (String) JOptionPane.showInputDialog(null, "Selecciona el campo a editar", "Editar Distrito", JOptionPane.QUESTION_MESSAGE, null, fields, fields[0]);
-            
+                    String fieldToEdit = (String) JOptionPane.showInputDialog(null, "Selecciona el campo a editar", "Editar Barrio", JOptionPane.QUESTION_MESSAGE, null, fields, fields[0]);
                     String newValue = "";
                     if (fieldToEdit.equals("city")) {
-                        List<City> cities = getAllCitiesUC.execute();
-                        String[] cityOptions = new String[cities.size()];
-                        for (int i = 0; i < cities.size(); i++) {
-                            cityOptions[i] = cities.get(i).getName();
+                        List<City> citiesListEdit = getAllCitiesUC.execute();
+                        String[] cityOptionsEdit = new String[citiesListEdit.size()];
+                        for (int i = 0; i < citiesListEdit.size(); i++) {
+                            cityOptionsEdit[i] = citiesListEdit.get(i).getName();
                         }
-            
-                        JComboBox<String> cityDropdown = new JComboBox<>(cityOptions);
-                        JOptionPane.showMessageDialog(null, cityDropdown, "Selecciona una Ciudad", JOptionPane.QUESTION_MESSAGE);
-                        String selectedCityName = (String) cityDropdown.getSelectedItem();
-                        newValue = cities.stream().filter(c -> c.getName().equals(selectedCityName)).findFirst().get().getId();
+                        JComboBox<String> cityDropdownEdit = new JComboBox<>(cityOptionsEdit);
+                        JOptionPane.showMessageDialog(null, cityDropdownEdit, "Selecciona una Ciudad", JOptionPane.QUESTION_MESSAGE);
+                        String selectedCityNameEdit = (String) cityDropdownEdit.getSelectedItem();
+                        newValue = citiesListEdit.stream().filter(c -> c.getName().equals(selectedCityNameEdit)).findFirst().get().getId();
                     } else {
                         newValue = JOptionPane.showInputDialog(null, "Nuevo valor para " + fieldToEdit);
                     }
-            
-                    // Call the use case to update the district
                     editDistrictUC.execute(districtNameToEdit, fieldToEdit, newValue);
                 } else {
-                    JOptionPane.showMessageDialog(null, "Este distrito no se ha encontrado", "Info distrito", JOptionPane.WARNING_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Este barrio no se ha encontrado", "Info barrio", JOptionPane.WARNING_MESSAGE);
                 }
                 break;
+            case 4: // Assuming option 4 is for finding all
+                List<District> allDistricts = findAllDistrictsUC.execute();
+                if (allDistricts.isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "No se encontraron barrios", "Info barrios", JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    String[] columnTitle = {"id", "name", "city"};
+                    Object[][] data = new Object[allDistricts.size()][3];
+                    for (int i = 0; i < allDistricts.size(); i++) {
+                        District district = allDistricts.get(i);
+                        data[i][0] = district.getId();
+                        data[i][1] = district.getName();
+                        data[i][2] = district.getCity();
+                    }
 
+                    JTable allDistrictsTable = new JTable(data, columnTitle);
+                    JOptionPane.showMessageDialog(null, new JScrollPane(allDistrictsTable), "Todos los barrios", JOptionPane.INFORMATION_MESSAGE);
+                }
+                break;
             default:
                 break;
         }

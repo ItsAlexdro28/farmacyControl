@@ -20,15 +20,16 @@ public class MenuUI extends JFrame {
         this.districtUI = districtUI;
         
         setTitle("Titulo");
-        setSize(400, 300);
+        setSize(500, 300);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         JPanel buttonPanel = new JPanel();
-        buttonPanel.setLayout(new GridLayout(2, 2, 10, 10));
+        buttonPanel.setLayout(new GridLayout(2, 3, 10, 10));
 
         JButton button1 = new JButton("Ciudad");
         JButton button2 = new JButton("Barrio");
         JButton button3 = new JButton("Cliente");
         JButton button4 = new JButton("Medicamento");
+        JButton button5 = new JButton("Tipo de documennto");
 
         button1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -46,6 +47,7 @@ public class MenuUI extends JFrame {
         buttonPanel.add(button2);
         buttonPanel.add(button3);
         buttonPanel.add(button4);
+        buttonPanel.add(button5);
 
         getContentPane().add(buttonPanel, BorderLayout.CENTER);
         
