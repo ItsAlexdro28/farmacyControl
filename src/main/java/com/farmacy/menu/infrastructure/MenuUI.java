@@ -9,15 +9,18 @@ import com.farmacy.city.infrastructure.CityUI;
 import com.farmacy.client.infrastructure.ClientUI;
 import com.farmacy.district.domain.entity.District;
 import com.farmacy.district.infrastructure.DistrictUI;
+import com.farmacy.typeid.infrastructure.TypeIdUI;
 
 public class MenuUI extends JFrame {
     private CityUI cityUI;
     private ClientUI clientUI;
+    private TypeIdUI typeIdUI;
     private DistrictUI districtUI;
 
-    public MenuUI(CityUI cityUI, DistrictUI districtUI) {
+    public MenuUI(CityUI cityUI, DistrictUI districtUI, TypeIdUI typeIdUI) {
         this.cityUI = cityUI;
         this.districtUI = districtUI;
+        this.typeIdUI = typeIdUI;
         
         setTitle("Titulo");
         setSize(500, 300);
@@ -43,6 +46,11 @@ public class MenuUI extends JFrame {
             }
         });
 
+        button5.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            typeIdUI.run();
+            }
+        });
         buttonPanel.add(button1);
         buttonPanel.add(button2);
         buttonPanel.add(button3);

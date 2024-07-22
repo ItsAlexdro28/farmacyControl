@@ -21,6 +21,9 @@ import com.farmacy.district.domain.service.DistrictService;
 import com.farmacy.district.infrastructure.DistrictRepository;
 import com.farmacy.district.infrastructure.DistrictUI;
 import com.farmacy.menu.infrastructure.MenuUI;
+import com.farmacy.typeid.aplication.CreateTypeIdUC;
+import com.farmacy.typeid.domain.service.TypeIdService;
+import com.farmacy.typeid.infrastructure.TypeIdRepository;
 import com.mysql.cj.x.protobuf.MysqlxCrud.Delete;
 
 public class Main {
@@ -41,6 +44,10 @@ public class Main {
         FindDistrictUC findDistrict = new FindDistrictUC(districtService);
         FindAllDistrictsUC findAllDistricts = new FindAllDistrictsUC(districtService);
         DistrictUI districtUI = new DistrictUI(createDistrict, deleteDistrict, findDistrict, editDistrict, findAllDistricts, getAllCities);
+
+        TypeIdService typeIdService = new TypeIdRepository();
+        CreateTypeIdUC createTypeIdUC = new CreateTypeIdUC(typeIdService);
+
 
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
