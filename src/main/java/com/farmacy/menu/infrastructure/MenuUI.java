@@ -7,13 +7,17 @@ import java.awt.event.ActionListener;
 
 import com.farmacy.city.infrastructure.CityUI;
 import com.farmacy.client.infrastructure.ClientUI;
+import com.farmacy.district.domain.entity.District;
+import com.farmacy.district.infrastructure.DistrictUI;
 
 public class MenuUI extends JFrame {
     private CityUI cityUI;
     private ClientUI clientUI;
+    private DistrictUI districtUI;
 
-    public MenuUI(CityUI cityUI) {
+    public MenuUI(CityUI cityUI, DistrictUI districtUI) {
         this.cityUI = cityUI;
+        this.districtUI = districtUI;
         
         setTitle("Titulo");
         setSize(400, 300);
@@ -29,6 +33,12 @@ public class MenuUI extends JFrame {
         button1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
             cityUI.run();
+            }
+        });
+        
+        button2.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            districtUI.run();
             }
         });
 

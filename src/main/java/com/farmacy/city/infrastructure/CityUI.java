@@ -20,7 +20,6 @@ public class CityUI {
     private FindCityUC findCityUC;
     private EditCityUC editCityUC;
     private FindAllCityUC findAllCityUC; 
-    private int option;
     Object[] options = {"Crear Ciudad", "Eliminar Ciudad", "Buscar ciudad", "Editar ciudad", "Mostrar ciudades"};
 
     public CityUI(CreateCityUC createCityUC, DeleteCityUC deleteCityUC, FindCityUC findCityUC, EditCityUC editCityUC, FindAllCityUC findAllCityUC) {

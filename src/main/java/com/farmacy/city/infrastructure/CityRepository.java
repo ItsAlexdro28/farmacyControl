@@ -104,4 +104,20 @@ public class CityRepository implements CityService {
         }
         return Optional.empty();
     }
+
+    public List<City> getAllCities() {
+        List<City> cities = new ArrayList<>();
+        String query = "SELECT id, name FROM cities";
+        try {
+            PreparedStatement ps = connection.prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                City city = new City(rs.getString("id"), rs.getString("name"));
+                cities.add(city);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return cities;
+    }
 }

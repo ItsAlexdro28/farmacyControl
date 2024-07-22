@@ -11,4 +11,5 @@ public interface CityService {
     public void editCity(String cityId, String field, String newValue);
     public Optional<City> findCity(String city);
     public List<City> findAllCity();
+    public List<City> getAllCities();
 }
